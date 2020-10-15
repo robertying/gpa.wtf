@@ -1,0 +1,28 @@
+@tailwind base;
+
+/* Write your own custom base styles here */
+a {
+  @apply text-accent;
+}
+
+@media (prefers-color-scheme: dark) {
+  a {
+    @apply text-purple-500;
+  }
+}
+
+a:hover {
+  @apply underline;
+}
+
+/* Start purging... */
+@tailwind components;
+/* Stop purging. */
+
+/* Write you own custom component styles here */
+
+/* Start purging... */
+@tailwind utilities;
+/* Stop purging. */
+
+/* Your own custom utilities */

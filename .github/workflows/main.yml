@@ -1,0 +1,38 @@
+name: CI
+
+on:
+  push:
+    branches: [master]
+
+env:
+  API_URL: https://api.thu.community
+  HASURA_GRAPHQL_ADMIN_SECRET: ${{ secrets.HASURA_GRAPHQL_ADMIN_SECRET }}
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Install
+        run: yarn install
+      - name: Typecheck
+        run: yarn typecheck
+      - name: Lint
+        run: yarn lint
+      - name: Build
+        run: yarn build
+
+  deploy:
+    needs: [check]
+    runs-on: ubuntu-latest
+    env:
+      USERNAME: $GITHUB_ACTOR
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    steps:
+      - uses: actions/checkout@v2
+      - name: Login into registry
+        run: echo $GITHUB_TOKEN | docker login docker.pkg.github.com -u $USERNAME --password-stdin
+      - name: Build Docker image
+        run: docker build --build-arg ARG_API_URL=$API_URL --build-arg ARG_HASURA_GRAPHQL_ADMIN_SECRET=$HASURA_GRAPHQL_ADMIN_SECRET -t docker.pkg.github.com/$GITHUB_REPOSITORY/gpa.wtf:latest .
+      - name: Push to registry
+        run: docker push docker.pkg.github.com/$GITHUB_REPOSITORY/gpa.wtf:latest
