@@ -604,13 +604,14 @@ const Course: React.FC = () => {
               <Button
                 variant="contained"
                 color="primary"
+                size="small"
                 href={`https://thu.community/login?redirect_url=${
                   typeof window === "undefined"
                     ? "https://course.thu.community"
                     : window.location.href
                 }`}
               >
-                登录
+                通过星期四登录
               </Button>
             </div>
           )}
@@ -708,13 +709,14 @@ const Course: React.FC = () => {
               <Button
                 variant="contained"
                 color="primary"
+                size="small"
                 href={`https://thu.community/login?redirect_url=${
                   typeof window === "undefined"
                     ? "https://course.thu.community"
                     : window.location.href
                 }`}
               >
-                登录
+                通过星期四登录
               </Button>
             </div>
           )}
