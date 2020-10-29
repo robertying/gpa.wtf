@@ -19,7 +19,7 @@ const Home: React.FC = ({ children }) => {
   }, [router.query.query]);
 
   return (
-    <div className="container mx-auto flex flex-col justify-center items-center min-h-screen py-8 dark:bg-gray-900">
+    <div className="container mx-auto flex flex-col justify-center items-center min-h-full py-8 dark:bg-gray-900">
       <h1 className="font-medium text-5xl mx-auto text-accent dark:text-purple-500">
         courseX
       </h1>

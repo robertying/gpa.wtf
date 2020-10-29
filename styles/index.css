@@ -1,6 +1,12 @@
 @tailwind base;
 
 /* Write your own custom base styles here */
+html,
+body,
+#__next {
+  height: 100%;
+}
+
 a {
   @apply text-accent;
 }
